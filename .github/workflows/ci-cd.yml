@@ -36,9 +36,3 @@ jobs:
       # run formater
       - name: Run Formater
         run: npm run format
-
-      # verify the commit message with commitlint and commitlint.config.js
-      - name: Verify Commit Message
-        uses: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@xx
-        with:
-          configFile: commitlint.config.cjs
