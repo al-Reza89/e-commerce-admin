@@ -8,7 +8,7 @@ const NavbarTitle = () => {
     <Image
       onClick={() => router.push('/')}
       alt="Logo"
-      className=" cursor-pointer  "
+      className=" cursor-pointer rounded-md "
       height="80"
       width="80"
       src="/logo.jpg"

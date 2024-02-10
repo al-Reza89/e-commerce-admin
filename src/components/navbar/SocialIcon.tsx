@@ -5,7 +5,7 @@ const SocialIcon = () => {
   return (
     <div>
       <div>
-        <div className="flex gap-4 lg:gap-6 ">
+        <div className="flex items-center gap-4 lg:gap-6 ">
           <div className="relative cursor-pointer ">
             <BsHeartFill
               size={30}
@@ -20,7 +20,7 @@ const SocialIcon = () => {
             <BsCartPlus
               size={30}
               fill="black"
-              className="hover:fill-blue-900 hover:scale-110 transition ease-in-out delay-150 cursor-pointer "
+              className="hover:fill-blue-900 dark:fill-white hover:scale-110 transition ease-in-out delay-150 cursor-pointer "
             />
             <div className="absolute -top-2 -right-1 text-black text-sm font-bold px-[6px] bg-yellow-300  rounded-full ">
               0
