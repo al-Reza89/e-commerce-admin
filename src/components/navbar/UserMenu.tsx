@@ -31,7 +31,6 @@ import {
   Users,
 } from 'lucide-react';
 import { FaUserCircle } from 'react-icons/fa';
-import { FaUserAltSlash } from 'react-icons/fa';
 
 const UserMenu = () => {
   return (
