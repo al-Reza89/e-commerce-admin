@@ -5,14 +5,16 @@ import React from 'react';
 const NavbarTitle = () => {
   const router = useRouter();
   return (
-    <Image
-      onClick={() => router.push('/')}
-      alt="Logo"
-      className=" cursor-pointer rounded-md "
-      height="80"
-      width="80"
-      src="/logo.jpg"
-    />
+    <div>
+      <Image
+        onClick={() => router.push('/')}
+        alt="Logo"
+        className=" cursor-pointer rounded-md "
+        height="80"
+        width="80"
+        src="/logo.jpg"
+      />
+    </div>
   );
 };
 
