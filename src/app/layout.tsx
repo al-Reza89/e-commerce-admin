@@ -5,6 +5,7 @@ import React from 'react';
 import ToasterProvider from '@/providers/ToasterProvider';
 import Navbar from '@/components/navbar/Navbar';
 import { ThemeProvider } from '@/providers/Theme-provider';
+import getCurrentUser from './actions/getCurrentUser';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,11 +14,12 @@ export const metadata: Metadata = {
   description: 'E commerce admin application',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -27,7 +29,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
+          <Navbar currentUser={currentUser} />
           <ToasterProvider />
           {children}
         </ThemeProvider>

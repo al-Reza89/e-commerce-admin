@@ -1,10 +1,15 @@
 'use client';
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
+import { DialogClose } from '../ui/dialog';
 
 const LoginModal = () => {
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -14,6 +19,22 @@ const LoginModal = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    setIsLoading(true);
+    signIn('credentials', {
+      ...data,
+      redirect: false,
+    }).then((callback) => {
+      setIsLoading(false);
+      if (callback?.ok) {
+        toast.success('Logged In');
+        router.refresh();
+      } else if (callback?.error) {
+        toast.error(callback.error);
+      } else {
+        // Handle other cases, such as null or undefined
+        toast.error('An error occurred');
+      }
+    });
   };
 
   return (
@@ -92,12 +113,14 @@ const LoginModal = () => {
             </div>
 
             <div>
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Sign in
-              </button>
+              <DialogClose asChild>
+                <button
+                  type="submit"
+                  className={` ${isLoading && 'cursor-not-allowed'} group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+                >
+                  Sign in
+                </button>
+              </DialogClose>
             </div>
           </form>
           <div className="mt-6">
@@ -138,8 +161,8 @@ const LoginModal = () => {
                 </a>
               </div>
               <div>
-                <a
-                  href="#"
+                <button
+                  onClick={() => signIn('google')}
                   className="w-full flex items-center justify-center px-8 py-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium  bg-white hover:bg-gray-50"
                 >
                   <img
@@ -147,7 +170,7 @@ const LoginModal = () => {
                     src="https://www.svgrepo.com/show/506498/google.svg"
                     alt=""
                   />
-                </a>
+                </button>
               </div>
             </div>
           </div>

@@ -5,10 +5,13 @@ import Search from './Search';
 import SocialIcon from './SocialIcon';
 import UserMenu from './UserMenu';
 import { ModeToggle } from '../Mode-toggle';
+import { User } from '@prisma/client';
 
-interface NavbarProps {}
+interface NavbarProps {
+  currentUser?: User | null;
+}
 
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
     <div className="fixed w-full dark:bg-black dark:text-white bg-white z-10 shadow-sm  backdrop-filter backdrop-blur-xl">
       <div className="py-3 border-b-[1px]  ">
@@ -23,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             <div className="flex gap-4  ">
               <ModeToggle />
               <SocialIcon />
-              <UserMenu />
+              <UserMenu currentUser={currentUser} />
             </div>
           </div>
         </div>

@@ -15,10 +15,14 @@ import { FaUserCircle } from 'react-icons/fa';
 import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
 import RegisterModal from '../modals/RegisterModal';
 import LoginModal from '../modals/LoginModal';
+import { User as PrismaUser } from '@prisma/client';
+import { signOut } from 'next-auth/react';
 
-const UserMenu = () => {
-  const user = false;
+interface UserMenuProps {
+  currentUser?: PrismaUser | null;
+}
 
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   return (
     <div className="lg:pl-10">
       <DropdownMenu>
@@ -28,10 +32,12 @@ const UserMenu = () => {
             className="flex gap-2 text-lg p-2 rounded-full"
           >
             <FaUserCircle className="h-full w-full " />
-            {user && <span className="text-sm">Reza</span>}
+            {currentUser && (
+              <span className="text-sm">{currentUser?.name}</span>
+            )}
           </Button>
         </DropdownMenuTrigger>
-        {user ? (
+        {currentUser ? (
           <DropdownMenuContent className="w-56">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
@@ -58,7 +64,7 @@ const UserMenu = () => {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => signOut()}>
               <LogOut className="mr-2 h-4 w-4" />
               <span>Log out</span>
               <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
