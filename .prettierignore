@@ -1,5 +1,6 @@
 # ignore artifacts of the build process
 next/
+src/components/ui/
 
 # igonre specific files
 package-lock.json
