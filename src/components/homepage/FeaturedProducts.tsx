@@ -141,11 +141,6 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
                               <a className="block w-3 h-3  bg-red-500 rounded-full"></a>
                             </span>
                           </li>
-                          <li className="">
-                            <span className="block p-1 border-2 border-gray-900 hover:border-green-500 rounded-full transition ease-in duration-300">
-                              <a className="block w-3 h-3  bg-green-500 rounded-full"></a>
-                            </span>
-                          </li>
                         </ul>
                       </div>
                     </div>
