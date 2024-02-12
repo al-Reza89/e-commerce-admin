@@ -5,7 +5,7 @@ import React from 'react';
 import PaymentDetails from './PaymentDetails';
 
 const OrderSummary = ({ login }) => {
-  const { products: cartProducts } = CartProducts();
+  const { products: cartProducts, removeProduct } = CartProducts();
 
   const totalPrice = cartProducts.reduce((accumulator, cartProduct) => {
     return accumulator + cartProduct.stock * cartProduct.price;
@@ -45,6 +45,12 @@ const OrderSummary = ({ login }) => {
                   </span>
                   <p className="text-lg font-bold">
                     ${cartProduct.price} x {cartProduct.stock}
+                  </p>
+                  <p
+                    onClick={() => removeProduct(cartProduct)}
+                    className=" cursor-pointer text-[10px] underline underline-offset-1 text-red-500"
+                  >
+                    remove product
                   </p>
                 </div>
               </div>

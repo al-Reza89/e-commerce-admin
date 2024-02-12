@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 
 interface ErrorStateProps {
-  error: Error;
+  error: any;
 }
 
 const ErrorState: React.FC<ErrorStateProps> = ({ error }) => {
@@ -12,7 +12,7 @@ const ErrorState: React.FC<ErrorStateProps> = ({ error }) => {
 
   return (
     <div className="flex justify-center items-center h-96">
-      <p className="text-2xl font-semibold">Sorry Go back to Home Page</p>
+      <p className="text-2xl font-semibold">{error}</p>
     </div>
   );
 };
