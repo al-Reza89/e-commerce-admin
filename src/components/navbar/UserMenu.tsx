@@ -17,12 +17,15 @@ import RegisterModal from '../modals/RegisterModal';
 import LoginModal from '../modals/LoginModal';
 import { User as PrismaUser } from '@prisma/client';
 import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface UserMenuProps {
   currentUser?: PrismaUser | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+  const router = useRouter();
+
   return (
     <div className="lg:pl-10">
       <DropdownMenu>
@@ -47,9 +50,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <span>Profile</span>
                 <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push('/order-request')}>
                 <CreditCard className="mr-2 h-4 w-4" />
-                <span>Billing</span>
+                <span>My Order</span>
                 <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
               </DropdownMenuItem>
               <DropdownMenuItem>
