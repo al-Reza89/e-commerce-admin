@@ -35,7 +35,7 @@ export async function PUT(request: Request) {
 
       return NextResponse.json(applyResponse);
     } else {
-      return NextResponse.json;
+      return NextResponse.json({ message: 'Invalid status' });
     }
   } catch (error) {
     console.error('Error occurred while creating the record:', error);
