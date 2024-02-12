@@ -66,10 +66,10 @@ model Cart {
   id         String      @id @default(auto()) @map("_id") @db.ObjectId
   userId     String      @db.ObjectId
   items      CartItem[]
-  totalPrice Int
-  firstName  String
-  lastName   String
-  street     String
+  totalPrice Int?
+  name       String
+  email      String?
+  address    String
   zip        String
   mobile     String
   status     OrderStatus @default(PENDING)
